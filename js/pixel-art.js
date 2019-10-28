@@ -40,7 +40,8 @@ colorPersonalizado.addEventListener('change',
 // Variables globales de objetos del DOM
 let paletaColores = document.getElementById('paleta');
 let grillaPixeles = document.getElementById('grilla-pixeles');
-let indicadorDeColor = document.getElementById('indicador-de-color')
+let indicadorDeColor = document.getElementById('indicador-de-color');
+let borrarTodo = document.getElementById('borrar');
 
 // Crea la grilla con los colores disponibles para utilizar
 function crearPaletaColores(arrayColores) {
@@ -96,3 +97,35 @@ function pintarDeCorrido(e) {
     pintarCuadrado(e);
   } 
 }
+
+//borrar todo lo dibujado en la grilla de pixeles
+
+borrar.addEventListener('click', function () {
+  let pixelesGrilla = $('#grilla-pixeles').children('div');
+  pixelesGrilla.animate({'backgroundColor': 'none'}, 1000);
+});
+
+
+//cargar imagenes de otros superheroes 
+
+document.getElementById('batman').addEventListener('click', function() {
+    cargarSuperheroe(batman);
+});
+
+document.getElementById('wonder').addEventListener('click', function() {
+  cargarSuperheroe(wonder);
+});
+
+document.getElementById('flash').addEventListener('click', function() {
+  cargarSuperheroe(flash);
+});
+
+document.getElementById('invisible').addEventListener('click', function() {
+  cargarSuperheroe(invisible);
+});
+
+//guardar imagen en png
+
+document.getElementById('guardar').addEventListener('click', function () {
+  guardarPixelArt();
+})
