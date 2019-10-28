@@ -40,9 +40,9 @@ colorPersonalizado.addEventListener('change',
 // Variables globales de objetos del DOM
 let paletaColores = document.getElementById('paleta');
 let grillaPixeles = document.getElementById('grilla-pixeles');
+let indicadorDeColor = document.getElementById('indicador-de-color')
 
 // Crea la grilla con los colores disponibles para utilizar
-
 function crearPaletaColores(arrayColores) {
   for (let i = 0; i < arrayColores.length; i++) {
     let color = arrayColores[i];
@@ -53,8 +53,7 @@ function crearPaletaColores(arrayColores) {
   }
 }
 
-// Crea la grilla de pixeles 
-
+// Crea la grilla de pixeles donde se pinta
 function crearGrillaPixeles() {
   for (let i = 0; i < 1750; i++) {
     let newDiv = document.createElement('div');
@@ -62,23 +61,38 @@ function crearGrillaPixeles() {
   }
 }
 
+// LLAMA A LAS FUNCIONES PARA INICIAR EL PROGRAMA
 crearPaletaColores(nombreColores);
 crearGrillaPixeles();
 
 //Elije un color y lo muestra en el color seleccionado
-
 paletaColores.addEventListener('click', mostrarColorSeleccionado);
 
 function mostrarColorSeleccionado(e) {
-  let indicadorDeColor = document.getElementById('indicador-de-color');
   indicadorDeColor.style.backgroundColor = e.target.style.backgroundColor;
 }
 
 //pinta el cuadrado que se clickea
-
 grillaPixeles.addEventListener('click', pintarCuadrado);
 
 function pintarCuadrado(e) {
-  let indicadorDeColor = document.getElementById('indicador-de-color');
   e.target.style.backgroundColor = indicadorDeColor.style.backgroundColor;
+}
+
+//pinta con el boton del mouse apretado
+let mouseClicked = false;
+
+grillaPixeles.addEventListener('mousedown', function () {
+  mouseClicked = true;
+});
+grillaPixeles.addEventListener('mouseup', function () {
+  mouseClicked = false;
+});
+grillaPixeles.addEventListener('mousemove', pintarDeCorrido);
+
+
+function pintarDeCorrido(e) {
+  if (mouseClicked == true) {
+    pintarCuadrado(e);
+  } 
 }
