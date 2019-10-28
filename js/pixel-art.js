@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 var nombreColores = ['White', 'LightYellow',
   'LemonChiffon', 'LightGoldenrodYellow', 'PapayaWhip', 'Moccasin', 'PeachPuff', 'PaleGoldenrod', 'Bisque', 'NavajoWhite', 'Wheat', 'BurlyWood', 'Tan',
   'Khaki', 'Yellow', 'Gold', 'Orange', 'DarkOrange', 'OrangeRed', 'Tomato', 'Coral', 'DarkSalmon', 'LightSalmon', 'LightCoral', 'Salmon', 'PaleVioletRed',
@@ -24,8 +26,8 @@ var nombreColores = ['White', 'LightYellow',
 // Es decir, el que se elige con la rueda de color.
 var colorPersonalizado = document.getElementById('color-personalizado');
 
-colorPersonalizado.addEventListener('change', 
-  (function() {
+colorPersonalizado.addEventListener('change',
+  (function () {
     // Se guarda el color de la rueda en colorActual
     colorActual = colorPersonalizado.value;
     // Completar para que cambie el indicador-de-color al colorActual
@@ -38,8 +40,10 @@ colorPersonalizado.addEventListener('change',
 let paletaColores = document.getElementById('paleta');
 let grillaPixeles = document.getElementById('grilla-pixeles');
 
+// Crea la grilla con los colores disponibles para utilizar
+
 function crearPaletaColores(arrayColores) {
-  for(let i = 0; i < arrayColores.length ; i++){
+  for (let i = 0; i < arrayColores.length; i++) {
     let color = arrayColores[i];
     let newDiv = document.createElement('div');
     newDiv.className = 'color-paleta';
@@ -48,8 +52,10 @@ function crearPaletaColores(arrayColores) {
   }
 }
 
+// Crea la grilla de pixeles 
+
 function crearGrillaPixeles() {
-  for(let i = 0; i < 1750; i++){
+  for (let i = 0; i < 1750; i++) {
     let newDiv = document.createElement('div');
     grillaPixeles.appendChild(newDiv);
   }
@@ -58,3 +64,20 @@ function crearGrillaPixeles() {
 crearPaletaColores(nombreColores);
 crearGrillaPixeles();
 
+//Elije un color y lo muestra en el color seleccionado
+
+paletaColores.addEventListener('click', mostrarColorSeleccionado);
+
+function mostrarColorSeleccionado(e) {
+  let indicadorDeColor = document.getElementById('indicador-de-color');
+  indicadorDeColor.style.backgroundColor = e.target.style.backgroundColor;
+}
+
+//pinta el cuadrado que se clickea
+
+grillaPixeles.addEventListener('click', pintarCuadrado);
+
+function pintarCuadrado(e) {
+  let indicadorDeColor = document.getElementById('indicador-de-color');
+  e.target.style.backgroundColor = indicadorDeColor.style.backgroundColor;
+}
