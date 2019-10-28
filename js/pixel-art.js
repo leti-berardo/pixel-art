@@ -35,15 +35,15 @@ colorPersonalizado.addEventListener('change',
 );
 
 // Variables globales de objetos del DOM
-let paletaColores = $('#paleta');
-let grillaPixeles = $('#grilla-pixeles');
+let paletaColores = document.getElementById('paleta');
+let grillaPixeles = document.getElementById('grilla-pixeles');
 
 function crearPaletaColores(arrayColores) {
-  for(let i = 0; i < arrayColores.length(); i++){
+  for(let i = 0; i < arrayColores.length ; i++){
     let color = arrayColores[i];
     let newDiv = document.createElement('div');
-    newDiv.className('color-paleta');
-    newDiv.style.backgroundColor(color);
+    newDiv.className = 'color-paleta';
+    newDiv.style.backgroundColor = color;
     paletaColores.appendChild(newDiv);
   }
 }
